@@ -2,10 +2,10 @@
 
 ## Installation Instructions
 
-Run the following commands
-	1. `` npm install ``
-	2. Run `` npm start `` to start the express server
-	3. (OPTIONAL) Included is a VS code debug config, feel free to use that to debug the application. It's set to work with the debug library, for any debug thread set with "PROJECT:" in it's name.
+Run the following commands:
+1. `` npm install ``
+2. Run `` npm start `` to start the express server
+3. (OPTIONAL) Included is a VS code debug config, feel free to use that to debug the application. It's set to work with the debug library, for any debug thread set with "PROJECT:" in it's name.
 
 ## Project Configuration
 

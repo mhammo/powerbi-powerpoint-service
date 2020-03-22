@@ -3,6 +3,8 @@ const powerbiClient = require('../services/powerbiClient');
 const powerbiRender = require('../services/powerbiRender');
 const debug = require('debug')('PROJECT:reports');
 const fs = require('fs-extra')
+const path = require('path');
+const reportHelper = require('../services/reportHelper');
 
 const controller = {}
 
@@ -53,21 +55,16 @@ controller.getPPTX = async(req, res) => {
 
     if (!reportFile) {
       res.status(404).send('No report file was found under that ID.');
-    }      
+    }
 
-    if (!reportFile.filePath) {
+    if (!(await reportHelper.checkReportFileExists(reportFile.filePath))) {
       const url = req.protocol + '://' + req.get('host') + req.originalUrl.replace('/download', '');
-      const file = req.params.id + '_' + (+ new Date());
+      const file = reportHelper.generateFileName(req.params.id);
       await powerbiRender.createPowerPoint(url, file);  
 
-      reportFile.filePath = 'downloads\\' + file + '.pptx';
+      reportFile.filePath = path.join('downloads', file + '.pptx');
       await reportFile.save();
-
-      const files = await fs.readdir('images');
-      const images = files.filter(fn => fn.startsWith(file));
-      for (let i = 0; i < images.length; i++){
-        await fs.unlink('images\\' + images[i]);
-      }
+      await reportHelper.removeImageFiles(file);      
     }
 
     res.download(reportFile.filePath); 

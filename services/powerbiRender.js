@@ -3,6 +3,7 @@ const Jimp = require('jimp');
 const fs = require('fs-extra');
 const PPTX = require('pptxgenjs');
 const debug = require('debug')('PROJECT:puppeteer');
+const path = require('path');
 
 /**
  * Gets a list of Power BI pages and initializes the puppeteer page for screenshot grabbing later on
@@ -66,7 +67,7 @@ async function renderPowerBIPages(browserPage, pages, filename) {
  * @param {*} filename The output file name
  */
 function takeScreenshot(browserPage, filename) {
-    return browserPage.screenshot({ path: `images\\${filename}.png`, fullPage: true });
+    return browserPage.screenshot({ path: path.join('images', `${filename}.png`), fullPage: true });
 }
 
 /**
@@ -84,13 +85,13 @@ async function createPPTX(filename, pagecount) {
     {
       debug(`Creating PPTX Page ${i}`);
       let slide = pptx.addNewSlide();
-      await cropPowerBIImage(`images\\${filename}-${i}.png`);
+      await cropPowerBIImage(path.join('images', `${filename}-${i}.png`));
       slide.addImage({
           x: 0,
           y: 0,
           w: 10,
           h: 5.625,
-          path: `images\\${filename}-${i}.png`
+          path: path.join('images', `${filename}-${i}.png`)
       });        
     }    
     
@@ -98,7 +99,7 @@ async function createPPTX(filename, pagecount) {
     // and the callback which saves a file doesn't resolve at point of saving
     // so we're getting the byte stream and reverting to fs-extra instead
     pptx.save('http', (byteArray) => {
-      fs.writeFile('downloads\\' + filename + '.pptx', byteArray)
+      fs.writeFile(path.join('downloads', filename + '.pptx'), byteArray)
         .then(resolve);
     });
   });

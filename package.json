@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "set DEBUG=* & node ./bin/www",
-    "postinstall": "cross-env 'mkdir -p {downloads,images}'"
+    "postinstall": "cross-env mkdir -p downloads images"
   },
   "dependencies": {
     "adal-node": "^0.1.28",

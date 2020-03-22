@@ -7,6 +7,8 @@ const MONGO_HOSTNAME = config.mongodb.hostname;
 const MONGO_PORT = config.mongodb.port;
 const MONGO_DB = config.mongodb.database;
 
-const url = `mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_HOSTNAME}:${MONGO_PORT}/${MONGO_DB}?authSource=admin`;
+const url = MONGO_USERNAME 
+    ? `mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_HOSTNAME}:${MONGO_PORT}/${MONGO_DB}?authSource=admin`
+    : `mongodb://${MONGO_HOSTNAME}:${MONGO_PORT}/${MONGO_DB}`;
 
 mongoose.connect(url, {useNewUrlParser: true});

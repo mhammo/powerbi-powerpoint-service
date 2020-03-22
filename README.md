@@ -25,3 +25,14 @@ The directory structure follows the MVC architecture, with a Service Layer patte
 
 ./routes/ = All routing is defined in routing/index.js, these should all just point to the relevant controller function, do not implement controller logic in this file
 
+## Example API Call
+
+POST reports:
+
+```
+{
+	"reportId": "b73df889-e326-4e29-9645-dcdb18c8f951",
+	"groupId": "1a758a08-1edc-4cc7-bcf0-7aa8b1fae9e2",
+	"username": "birmingham"
+}
+```

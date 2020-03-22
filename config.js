@@ -1,19 +1,19 @@
 var config = {
   powerbi: {
-    username: "powerbi@tenant.com",
-    password: "password",
-    clientId: "00000000-0000-0000-0000-000000000000",
-    apiUrl: "https://api.powerbi.com/",
-    authorityUrl: "https://login.windows.net/common/oauth2/authorize/",
-    resourceUrl: "https://analysis.windows.net/powerbi/api",
-    tenant: "tenant.onmicrosoft.com"
+    username: process.env.PBI_USERNAME,
+    password: process.env.PBI_PASSWORD,
+    clientId: process.env.PBI_CLIENTID,
+    apiUrl: process.env.PBI_API_URL,
+    authorityUrl: process.env.PBI_AUTHORITY_URL,
+    resourceUrl: process.env.PBI_RESOURCE_URL,
+    tenant: process.env.PBI_TENANT
   },
   mongodb: {
-    username: "admin",
-    password: "password",
-    hostname: "127.0.0.1",
-    port: "27017",
-    database: "powerbi_files"
+    username: process.env.MONGODB_USER,
+    password: process.env.MONGODB_PASSWORD,
+    hostname: process.env.MONGODB_HOSTNAME,
+    port: process.env.MONGODB_PORT,
+    database: process.env.MONGODB_DATABASE
   }
 }
 

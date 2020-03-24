@@ -1,22 +1,22 @@
 const fs = require('fs-extra')
 const reportHelper = {};
 
-async function checkFileExists(filepath){
+async function checkFileExists(filepath) {
     let flag = true;
     try{
-      await fs.access(filepath, fs.F_OK);
-    }catch(e){
-      flag = false;
+        await fs.access(filepath, fs.F_OK);
+    } catch(e){
+        flag = false;
     }
     return flag;
-  }
+}
 
-reportHelper.checkReportFileExists = async function (filepath){
+reportHelper.checkReportFileExists = async function (filepath) {
     if (!filepath)
         return false;
 
     return await checkFileExists(filepath);
-  }
+}
 
 reportHelper.generateFileName = id => id + '_' + (+ new Date());
 

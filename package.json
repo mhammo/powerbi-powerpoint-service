@@ -21,7 +21,7 @@
     "morgan": "~1.9.1",
     "pdfkit": "^0.8.3",
     "pptxgenjs": "^2.2.0",
-    "pug": "^2.0.4",
+    "pug": "^3.0.1",
     "puppeteer": "^1.5.0"
   },
   "devDependencies": {
